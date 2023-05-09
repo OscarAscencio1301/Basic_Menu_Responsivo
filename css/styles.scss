@@ -1,0 +1,175 @@
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap";
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #3d4152;
+
+}
+
+.navigation {
+    position: fixed;
+    inset: 20px 0 20px 20px;
+    background-color: #fff;
+    width: 75px;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+
+    .menuToogle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        cursor: pointer;
+        border-bottom: 1px solid #000;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 23px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: #333;
+            transform: translateY(-8px);
+            transition: 0.5s;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: #333;
+            transform: translateY(8px);
+            transition: 0.5s;
+            box-shadow: 0 -8px #333;
+        }
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+
+        li {
+            position: relative;
+            width: 100%;
+            height: 60px;
+            padding: 0 10px;
+            transition: 0.5s;
+
+            a {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                text-align: center;
+                text-decoration: none;
+                color: var(--clr);
+                gap: 10px;
+
+                .icon {
+                    position: relative;
+                    display: block;
+                    min-width: 55px;
+                    height: 55px;
+                    transition: 0.5s;
+                    border-radius: 12px;
+                    line-height: 60px;
+                    font-size: 1.75em;
+                    color: #222;
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: 10px;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 12px;
+                        background: var(--clr);
+                        filter: blur(8px);
+                        opacity: 0;
+                        transition: 0.5s;
+                    }
+                }
+
+
+                .text {
+                    position: relative;
+                    padding: 0 15px;
+                    height: 60px;
+                    display: flex;
+                    align-items: center;
+                    color: #333;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: 0.5s;
+                   
+                }
+            }
+
+
+            &.active {
+                transform: translateX(30px);
+
+                a {
+                    .icon {
+                        background-color: var(--clr);
+                        color: white;
+
+                        &::before {
+                            opacity: 0.5s;
+                        }
+
+                    }
+                        .text {
+                            color: var(--clr);
+                        }
+
+
+                }
+            }
+        }
+    }
+
+    &.open .menuToogle::before{
+        transform: translateY(0px) rotate(45deg) ;
+    
+    }
+
+    &.open{
+        width: 227px;
+    }
+
+    &.open .menuToogle::after{
+        transform: translateY(0px) rotate(-45deg);
+        box-shadow: none;
+    }
+
+    &.open ul li.active{
+        transform: translateX(10px);
+    }
+
+    &.open ul li .text{
+        visibility: visible;
+        opacity: 1;
+    
+    }
+
+
+}
